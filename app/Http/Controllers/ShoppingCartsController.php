@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\ShoppingCart;
 use App\PayPal;
+
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderCreated;
 class ShoppingCartsController extends Controller
 {
     public function __construct()
@@ -14,6 +17,9 @@ class ShoppingCartsController extends Controller
 
     public function index(Request $request)
     {
+
+        Mail::to("zaraterick@outlook.com")->send(new OrderCreated());
+
         $shopping_cart = $request->shopping_cart;
         /*$paypal = new PayPal($shopping_cart);
         $payment = $paypal->generate();
