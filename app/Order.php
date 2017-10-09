@@ -29,6 +29,11 @@ class Order extends Model
       Mail::to("zaraterick@outlook.com")->send(new OrderCreated($this));
   }
 
+  public function shoppingCartID()
+  {
+      return $this->shopping_cart->customid;
+  }
+
   public function shopping_cart()
   {
       return $this->belongsTo('App\ShoppingCart');
