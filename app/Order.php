@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderCreated;
+
 class Order extends Model
 {
   protected $fillable = [
@@ -20,6 +23,16 @@ class Order extends Model
      'total',
      'guide_number'
   ];
+
+  public function sendMail($value='')
+  {
+      Mail::to("zaraterick@outlook.com")->send(new OrderCreated($this));
+  }
+
+  public function shopping_cart()
+  {
+      return $this->belongsTo('App\ShoppingCart');
+  }
 
   public static function createFormPayPalResponse($response, $shopping_cart)
   {

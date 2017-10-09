@@ -24,6 +24,8 @@ class PaymentsController extends Controller
         \Session::remove('shopping_cart_id');
         $order = Order::createFormPayPalResponse($response, $shopping_cart);
         $shopping_cart->approve();
+
+        $order->sendMail();
       }
       return view("shopping_carts.completed",compact('shopping_cart','order'));
     }
