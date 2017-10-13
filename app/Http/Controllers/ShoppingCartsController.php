@@ -17,7 +17,7 @@ class ShoppingCartsController extends Controller
     public function index(Request $request)
     {
         $order = Order::all()->last();
-        $order->sendMail();
+        $order->sendUpdateMail();
 
         $shopping_cart = $request->shopping_cart;
         /*$paypal = new PayPal($shopping_cart);
