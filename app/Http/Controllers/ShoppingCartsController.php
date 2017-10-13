@@ -16,13 +16,10 @@ class ShoppingCartsController extends Controller
 
     public function index(Request $request)
     {
-        $order = Order::all()->last();
-        $order->sendUpdateMail();
-
         $shopping_cart = $request->shopping_cart;
-        /*$paypal = new PayPal($shopping_cart);
+        $paypal = new PayPal($shopping_cart);
         $payment = $paypal->generate();
-        return redirect($payment->getApprovalLink());*/
+        return redirect($payment->getApprovalLink());
 
         $productos = $shopping_cart->productos()->get();
 
