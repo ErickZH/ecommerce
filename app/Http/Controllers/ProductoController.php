@@ -24,6 +24,7 @@ class ProductoController extends Controller
 
   public function store(Request $request)
   {
+      $hasFile = $request->hasFile('cover') && $request->cover->isValid();
     $producto = new Producto;
 
     $producto->title = $request->title;
@@ -31,7 +32,17 @@ class ProductoController extends Controller
     $producto->pricing = $request->pricing;
     $producto->user_id = \Auth::user()->id;
 
+    if ($hasFile)
+    {
+        $extension = $request->cover->extension();
+        $producto->extension = $extension;
+    }
+
     if ($producto->save()) {
+        if ($hasFile)
+        {
+            $request->cover->storeAs('images', "$producto->id.$extension");
+        }
       return redirect("/productos");
     }else {
       return view("producto.create",compact('producto'));

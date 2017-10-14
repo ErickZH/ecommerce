@@ -15,7 +15,9 @@
       <h1>{{ $producto->title }}</h1>
       <div class="row">
         <div class="col-sm-6 col-lg-12">
-
+            @if ($producto->extension)
+                <img src="{{ url("/productos/images/$producto->id.$producto->extension") }}" class="product-avatar">
+            @endif
         </div>
         <div class="col-sm-6 col-lg-12">
           <p><strong>Descripción</strong></p>
