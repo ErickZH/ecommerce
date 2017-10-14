@@ -9,30 +9,35 @@ use App\Order;
 
 class ShoppingCartsController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware("shoppingcart");
-    }
+        public function __construct()
+        {
+            $this->middleware("shoppingcart");
+        }
 
-    public function index(Request $request)
-    {
-        $shopping_cart = $request->shopping_cart;
-        $paypal = new PayPal($shopping_cart);
-        $payment = $paypal->generate();
-        return redirect($payment->getApprovalLink());
+        public function index(Request $request)
+        {
+            $shopping_cart = $request->shopping_cart;
 
-        $productos = $shopping_cart->productos()->get();
+            $productos = $shopping_cart->productos()->get();
 
-        $total = $shopping_cart->total();
+            $total = $shopping_cart->total();
 
-        return view('shopping_carts.index',compact('productos','total'));
-    }
+            return view('shopping_carts.index',compact('productos','total'));
+        }
 
-  public function show($id)
-  {
-    $shopping_cart = ShoppingCart::where('customid',$id)->first();
-    $order = $shopping_cart->order();
+      public function show($id)
+      {
+        $shopping_cart = ShoppingCart::where('customid',$id)->first();
+        $order = $shopping_cart->order();
 
-    return view("shopping_carts.completed",compact('shopping_cart','order'));
-  }
+        return view("shopping_carts.completed",compact('shopping_cart','order'));
+      }
+
+      public function checkout(Request $request)
+      {
+          $shopping_cart = $request->shopping_cart;
+          $paypal = new PayPal($shopping_cart);
+          $payment = $paypal->generate();
+          return redirect($payment->getApprovalLink());
+      }
 }
