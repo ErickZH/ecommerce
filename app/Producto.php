@@ -13,6 +13,11 @@ class Producto extends Model
       'user_id','title', 'description', 'pricing',
   ];
 
+  public function scopeLatest($query)
+  {
+      return $query->orderBy('id','desc');
+  }
+
   public function paypalItem()
   {
     return \Paypalpayment::item()->setName($this->title)
