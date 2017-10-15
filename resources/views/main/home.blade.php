@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('title','Productos Programacion JJE')
-
 @section('content')
   <div class="text-center products-container">
       <div class="row">
@@ -11,10 +9,11 @@
               </div>
           @endforeach
       </div>
-
       <div>
           {{ $productos->links() }}
       </div>
   </div>
-
+@endsection
+@section('js')
+    <script type="text/javascript" src="{{asset('js/from.js')}}"></script>
 @endsection

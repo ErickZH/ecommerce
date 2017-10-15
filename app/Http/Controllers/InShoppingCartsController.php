@@ -28,6 +28,13 @@ class InShoppingCartsController extends Controller
         'producto_id' => $request->producto_id
       ]);
 
+      if ($request->ajax())
+      {
+          return response()->json([
+              'producto_count' => InShoppingCart::productoCount($shopping_cart->id)
+          ]);
+      }
+
       if ($response) {
         return redirect('/carrito');
       }else{
