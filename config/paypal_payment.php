@@ -3,8 +3,8 @@
 return array(
 	# Account credentials from developer portal
 	'Account' => array(
-		'ClientId' => env('PAYPAL_CLIENT_ID', 'AaJysbRV1_a42Nqsn3AIVwPuzX7nmbL0A60NUmdM0_u3I61iKnn3_0x0kpUTPbn7pS9q26jv2wATnFuQ'),
-		'ClientSecret' => env('PAYPAL_CLIENT_SECRET', 'EEgyJrHmuRMwBjbcz21FWQNmh1DeIOcQhbXiwfhJPFhcDUO7pd1boAiG0E-cjw5jOBt6qYIX6EGJW0E9'),
+		'ClientId' => env('PAYPAL_CLIENT_ID', 'AVTZ3aVhvYjXsk0H_1n797wJWJTpcvwvrbYo_aFwr5ltdJ4YDQhOC19fYQ3dDDnKz0L0d7cidK-gplJ0'),
+		'ClientSecret' => env('PAYPAL_CLIENT_SECRET', 'EHwcYyvnLE_RhVRViRj_j2nvQsYlpMnV20T5rGikONa6rEg0gR7ucj7f-OQGN1jPEmYqzBbZD8C1cZYU'),
 	),
 
 	# Connection Information
@@ -18,7 +18,7 @@ return array(
 	'Service' => array(
 		# For integrating with the live endpoint,
 		# change the URL to https://api.paypal.com!
-		'EndPoint' => 'https://api.sandbox.paypal.com',
+		'EndPoint' => 'https://api.paypal.com',
 	),
 
 
@@ -39,5 +39,5 @@ return array(
 	),
 
 	# Define your application mode here
-	'mode' => 'sandbox'
+	'mode' => 'live'
 );
